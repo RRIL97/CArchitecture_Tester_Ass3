@@ -1,7 +1,8 @@
 # CArchitecture_Tester_Ass3
 A tester that I have written for assignment 3 of the Computer Architecture class in BGU 2021
 
-This tester generates random data on the fly and then compares the valid results to what is given from your executable.
+This tester generates random data on the fly and then tests different scenarios on your generated executable. Output from the executable is compared to the correct output.
+Very useful for those who don't wanna do things manual. (This allows thousands of randomly generated tests in minutes)
 
 ---
 
