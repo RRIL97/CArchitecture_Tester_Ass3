@@ -85,12 +85,13 @@ public class FunctionalTests implements Runnable {
             }
             for (int j = 0; j < 5; j++) {
                 String answerPop = functionalTester.sendCommand("p");
+                if(answerPop.length() > 0){
                 if (!answerPop.equals(Integer.toString(generatedValues.get(4-j)))) {
                     System.out.println("Invalid Pop Test | Answer Of Program : " + answerPop + " | Should Be : " + generatedValues.get(4-j));
                     return false;
                 } else
                     System.out.println("Correct Pop Test | Answer Of Program : " + answerPop + " | Should Be : " + generatedValues.get(4-j));
-
+                }
             }
             generatedValues.clear();
         }
