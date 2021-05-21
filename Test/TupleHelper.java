@@ -1,3 +1,4 @@
+
 package Test;
 
 public class TupleHelper {
@@ -58,5 +59,12 @@ public class TupleHelper {
       if(which == 1)
           return  Math.ceil(Integer.toHexString(Integer.parseInt(firstNumStr,8)).length()) / 2.0;
        return Math.ceil(Integer.toHexString(Integer.parseInt(secondNumStr,8)).length() / 2.0);
+    }
+
+    public void setFirstNumStr(String input){
+          firstNumStr = input;
+    }
+    public void setSecondNumStr(String input){
+         secondNumStr = input;
     }
 }
