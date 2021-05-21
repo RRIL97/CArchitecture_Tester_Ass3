@@ -242,7 +242,7 @@ public class FunctionalTests implements Runnable {
     public boolean nOperationTest(int numOfTests){
 
         for(int i = 1; i < numOfTests ; i++) {
-            TupleHelper nGener = new TupleHelper(i*10, i*10*i);
+            TupleHelper nGener = new TupleHelper(i*10, i*1000*i);
 
             functionalTester.sendCommand(nGener.getFirstNumStr());
             functionalTester.sendCommand(nGener.getSecondNumStr());
@@ -286,6 +286,38 @@ public class FunctionalTests implements Runnable {
         }
         return true;
     }
+
+    public boolean complementaryCheck(int numOfTests){
+        for(int i = 1; i < numOfTests ; i++) {
+            int sizeComplementStr = (int)(Math.random()*(20+1)+1);
+            StringBuilder firstNum = new StringBuilder();
+            StringBuilder secondNum = new StringBuilder();
+
+            for(int j = 0; j < sizeComplementStr ; j++) {
+                firstNum.append("5");
+                secondNum.append("2");
+            }
+            TupleHelper nGener = new TupleHelper(0,0);
+            nGener.setFirstNumStr(firstNum.toString());
+            nGener.setSecondNumStr(secondNum.toString());
+
+
+            functionalTester.sendCommand(nGener.getFirstNumStr());
+            functionalTester.sendCommand(nGener.getSecondNumStr());
+
+            functionalTester.sendCommand("&");
+            functionalTester.sendCommand("n");
+            String answerComplement = functionalTester.sendCommand("p");
+            if (answerComplement.trim().length() > 0) {
+                if (!answerComplement.equals("1")) {
+                    System.out.println("Invalid Complementary Test");
+                    return false;
+                } else
+                    System.out.println("Correct Complementary Test | Program Answer : "+answerComplement + " | Should Give : 1");
+            }
+        }
+        return true;
+    }
     @Override
     public void run() {
         boolean sanityCheck = false;
@@ -294,13 +326,16 @@ public class FunctionalTests implements Runnable {
         boolean andOperation = false;
         boolean popOperation = false;
         boolean passedRandomActions = false;
+        boolean complementaryTest = false;
 
-        int numberOfSingleTests = 250;
+        int numberOfSingleTests = 500;
 
         sanityCheck = SanityChecks.checkStackSizeParamOctal();
         System.out.println("SanityCheck.java | Stack Size Param Test | Success : "+ sanityCheck);
 
+
         functionalTester.initializeWithArgs(null);
+
         System.out.println("Starting nOperation Test....\n-----------------------");
         nOperation = nOperationTest(numberOfSingleTests);
         System.out.println("nOperation Test | Success : " + nOperation);
@@ -311,19 +346,21 @@ public class FunctionalTests implements Runnable {
         addOperation = addTest(numberOfSingleTests);
         System.out.println("Add Test | Success : " + addOperation);
         System.out.println("\nStarting PopTest....\n-----------------------");
-        popOperation = popTest(numberOfSingleTests);
+        popOperation = popTest(15);
         System.out.println("Pop Test | Success : " + popOperation);
+        complementaryTest = complementaryCheck(45);
+
         functionalTester.kill();
 
         passedRandomActions = randomizedActionsTest();
         System.out.println("Randomized Action Test | " + passedRandomActions);
 
 
-        if(nOperation && andOperation && addOperation && popOperation && sanityCheck && passedRandomActions)
+        if(complementaryTest && nOperation && andOperation && addOperation && popOperation && sanityCheck && passedRandomActions)
             System.out.println("Seems like everything is alright..\n");
         else
             System.out.println("Something is wrong..");
 
 
+         functionalTester.kill();
     }
-}
