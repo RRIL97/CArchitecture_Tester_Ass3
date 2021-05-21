@@ -14,7 +14,7 @@ Last update:
 
 Added-
 * Completely randomly generated tests that randomize the actions aswell (Till now each action was checked separately) 
-* New test for a specific unique case that might be missed by many (Whenever we use complementary numbers with "and operation" proceeding with the "n" operation)
+* New test for a unique case that might be missed by many (Whenever we use complementary numbers with "and operation" proceeding with the "n" operation)
 
 
 ----
