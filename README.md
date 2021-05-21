@@ -9,6 +9,13 @@ This tester allows running thousands of randomly generated tests on the program 
 
 Release Date : 20/05/21
 
+Last update:
+21/05/21
+
+Added-
+* Completely randomly generated tests that randomize the actions aswell (Till now each action was checked separately) 
+
+
 ----
 
 To do:
@@ -17,7 +24,7 @@ Memory leak check
 ----
 
 Known bugs:
-None
+Sometimes it might tell you that the tests have failed. (Because of read timeouts of console etc..) - Just rerun the tester a few times
 
 
 How to use -
@@ -32,7 +39,7 @@ Features-
 3) Tests N operation
 4) Tests multiple pop and print operations
 5) Tests params aka stack size param
-
+6) Completly randomly generated tests that utilize Adding,And,N,pop and print
 
 
 ![Screenshot](T1.png)
