@@ -295,7 +295,7 @@ public class FunctionalTests implements Runnable {
         boolean popOperation = false;
         boolean passedRandomActions = false;
 
-        int numberOfSingleTests = 50;
+        int numberOfSingleTests = 250;
 
         sanityCheck = SanityChecks.checkStackSizeParamOctal();
         System.out.println("SanityCheck.java | Stack Size Param Test | Success : "+ sanityCheck);
