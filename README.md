@@ -1,9 +1,9 @@
 # CArchitecture_Tester_Ass3
 A tester that I have written for assignment 3 of the Computer Architecture class in BGU 2021
 
-This tester generates random data on the fly and then tests different scenarios on the Unlimited precision calculator executable. 
-Output from the executable is compared to what should of been outputted by the program.
-This tester allows running thousands of randomly generated tests on the program in minutes.
+This tester generates random data on the fly and proceeds to test different scenarios on the Unlimited precision calculator executable. 
+Output from the executable is compared to what should of been outputted by your program.
+This tester allows running thousands of randomly generated tests on your program in a minute.
 
 ---
 
