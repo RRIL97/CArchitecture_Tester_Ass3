@@ -10,12 +10,12 @@ This tester allows running thousands of randomly generated tests on your program
 Release Date : 20/05/21
 
 Last update:
-21/05/21 13:21
+22/05/21 23:44
 
 Added-
 * Completely randomly generated tests that randomize the actions aswell (Till now each action was checked separately) 
 * New test for a unique case that might be missed by many (Whenever we use complementary numbers with "and operation" proceeding with the "n" operation)
-
+* New sanity tests according to the following : https://www.cs.bgu.ac.il/~caspl212/Forum/Forum_Assignment_2?action=show-thread&id=8c55fc260fddbc41569e9c20a102155d
 
 ----
 
