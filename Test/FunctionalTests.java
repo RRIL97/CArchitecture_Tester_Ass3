@@ -24,6 +24,7 @@ public class FunctionalTests implements Runnable {
         commands.add("n");
         commands.add("+");
         commands.add("&");
+        commands.add("d");
         commands.add("ADD_NUM_TO_STACK");
 
         currentStack.clear();
@@ -37,6 +38,25 @@ public class FunctionalTests implements Runnable {
 
             switch(currentCommand)
             {
+                case "d":
+                    if(currentStack.size() >0)
+                    {
+                        if(currentStack.size() < stackSizeRandom)
+                        {
+                            functionalTester.sendCommand("d");
+                            String top = currentStack.pop();
+                            String duped = functionalTester.sendCommand("p");
+                            String before = functionalTester.sendCommand("p");
+
+                            if(!top.equals(duped) && top.equals(before))
+                            {
+                                System.out.println("randomizedActionsTest | Dup Test Failed.. ");
+                                break;
+                            }else
+                                System.out.println("randomizedActionsTest | Dup Test Success | Top : "+top);
+                        }
+                    }
+                    break;
                 case "p":
                     if(currentStack.size() == 0){
                         /*
@@ -318,8 +338,25 @@ public class FunctionalTests implements Runnable {
         }
         return true;
     }
+
+    public boolean checkOverrideWithDup()
+    {
+        for(int i = 0 ; i < 10; i++)
+            functionalTester.sendCommand(Integer.toString(i));
+        functionalTester.sendCommand("d");
+        String top = functionalTester.sendCommand("p");
+        String before = functionalTester.sendCommand("p");
+
+        for(int i = 0; i < 3 ;i++)
+            functionalTester.sendCommand("p");
+
+        return !top.equals(before);
+    }
     @Override
     public void run() {
+
+
+
         boolean sanityCheck = false;
         boolean nOperation  = false;
         boolean addOperation = false;
@@ -327,6 +364,7 @@ public class FunctionalTests implements Runnable {
         boolean popOperation = false;
         boolean passedRandomActions = false;
         boolean complementaryTest = false;
+        boolean duplicateBoundaryTest = false;
 
         int numberOfSingleTests = 500;
 
@@ -350,17 +388,20 @@ public class FunctionalTests implements Runnable {
         System.out.println("Pop Test | Success : " + popOperation);
         complementaryTest = complementaryCheck(45);
 
+
+        duplicateBoundaryTest = checkOverrideWithDup();
+        System.out.println("Boundary Test With Duplicate | Success: "+duplicateBoundaryTest);
+
         functionalTester.kill();
 
         passedRandomActions = randomizedActionsTest();
         System.out.println("Randomized Action Test | " + passedRandomActions);
 
-
-        if(complementaryTest && nOperation && andOperation && addOperation && popOperation && sanityCheck && passedRandomActions)
+        if(duplicateBoundaryTest && complementaryTest && nOperation && andOperation && addOperation && popOperation && sanityCheck && passedRandomActions)
             System.out.println("Seems like everything is alright..\n");
         else
             System.out.println("Something is wrong..");
 
-
          functionalTester.kill();
     }
+}
