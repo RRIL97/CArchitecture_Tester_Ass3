@@ -41,6 +41,8 @@ Features-
 4) Tests multiple pop and print operations
 5) Tests params aka stack size param
 6) Completly randomly generated tests that utilize Adding,And,N,pop and print
+7) Tests dupe on a full stack
+8) Tests dupe operation
 
 
 ![Screenshot](T1.png)
